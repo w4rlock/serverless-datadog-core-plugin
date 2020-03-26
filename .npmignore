@@ -1,0 +1,9 @@
+.eslintrc
+.eslintignore
+.gitignore
+.prettierrc
+.git/*
+.lintstagedrc
+.editorconfig
+serverless.yml
+node_modules/*

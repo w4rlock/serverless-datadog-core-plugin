@@ -1,0 +1,35 @@
+
+service: 'datadog-forward'
+
+
+provider:
+  name: aws
+  stage: 'develop'
+  region: 'us-east-1'
+  tags:
+    owner: i
+    createdby: serverless
+
+
+package:
+  individually: true
+
+plugins:
+  modules:
+    - ./index.js
+
+custom:
+  bucket: my-existent-bucket-logs
+
+  vault:
+    host: vault.corp.cloud
+    key: key-vault
+    path: /v1/secret/${self:custom.vault.key}
+
+
+  datadogLogForward:
+    apiKey: '********************************'
+    functionName: team-datadoglogforward-${self:provider.stage}
+    bucket: ${self:custom.bucket}
+    extendsFn:
+      memorySize: 256
