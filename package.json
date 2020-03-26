@@ -1,6 +1,6 @@
 {
   "name": "serverless-datadog-core-plugin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Serverless deploy datadog log forwarder lambdas 3.5.0",
   "main": "index.js",
   "scripts": {
