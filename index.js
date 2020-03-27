@@ -1,10 +1,8 @@
 const _ = require('lodash');
 const R = require('ramda');
 const path = require('path');
-const yaml = require('js-yaml');
-const handlebars = require('handlebars');
-const fs = require('fs');
 const slsIamFnRolePlugin = require('serverless-iam-roles-per-function');
+const utils = require('./lib/utils.js');
 
 const LOG_PREFFIX = '[ServerlessDatadogPlugin] - ';
 
@@ -154,65 +152,12 @@ class ServerlessDatadogPlugin {
    * @returns {object} obj rendered
    */
   getTemplateObject(filePath, data) {
-    const fileContent = this.readFile(filePath);
-    const template = this.renderTemplate(fileContent, data);
-    const ymlContent = this.yamlLoad(template);
+    const fileAbsPath = path.resolve(this.pluginPath, filePath);
+    const fileContent = utils.readFile(fileAbsPath);
+    const template = utils.renderTemplate(fileContent, data);
+    const ymlContent = utils.yamlLoad(template);
 
     return ymlContent;
-  }
-
-  /*
-   * Read file
-   *
-   * @param {string} filePath relative path to file
-   * @returns {string} file content
-   */
-  readFile(filePath) {
-    let content;
-    try {
-      const filename = path.resolve(this.pluginPath, filePath);
-      content = fs.readFileSync(filename, 'utf-8');
-    } catch (err) {
-      throw new Error(`could not read "${filePath}" file: ${err}`);
-    }
-
-    return content;
-  }
-
-  /**
-   * Render handlebar template
-   *
-   * @param {string} template file content
-   * @param {object} data object to render template
-   * @returns {string} template rendered
-   */
-  renderTemplate(content, data) {
-    let rendered;
-    try {
-      const compile = handlebars.compile(content);
-      rendered = compile(data);
-    } catch (err) {
-      throw new Error(`could not render "${content}" template: ${err}`);
-    }
-
-    return rendered;
-  }
-
-  /**
-   * Parse string content to yaml object
-   *
-   * @param {string} yaml string content
-   * @returns {object} js yml rendered
-   */
-  yamlLoad(content) {
-    let ymlObject;
-    try {
-      ymlObject = yaml.safeLoad(content);
-    } catch (err) {
-      throw new Error(`invalid yaml content "${content}": ${err}`);
-    }
-
-    return ymlObject;
   }
 }
 

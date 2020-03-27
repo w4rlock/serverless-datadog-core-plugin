@@ -8,7 +8,6 @@ provider:
     owner: i
     createdby: serverless
 
-
 plugins:
   modules:
     - ./index.js
@@ -23,7 +22,7 @@ custom:
 
 
   datadogLogForward:
-    apiKey: '********************************'
+    apiKey: '' # from env
     functionName: team-datadoglogforward-${self:provider.stage}
     bucket: ${self:custom.bucket}
     extendsFn:
