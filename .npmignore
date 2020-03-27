@@ -1,6 +1,7 @@
 .eslintrc
 .eslintignore
 .prettierrc
+.env
 
 .lintstagedrc.json
 .editorconfig
