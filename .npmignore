@@ -1,10 +1,12 @@
 .eslintrc
 .eslintignore
 .prettierrc
+commitlint.config.js
 .env
 
 .lintstagedrc.json
 .editorconfig
+CHANGELOG.md
 
 serverless.yml
 
