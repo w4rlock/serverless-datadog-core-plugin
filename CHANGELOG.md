@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.3](https://github.com/w4rlock/serverless-datadog-core-plugin/compare/0.4.2...0.4.3) (2020-03-27)
+
+
+### Bug Fixes
+
+* add commitlint to npmignore ([e38278e](https://github.com/w4rlock/serverless-datadog-core-plugin/commit/e38278e19c015763de5080f7ec20d612ea190541))
+
 ### [0.4.2](https://github.com/w4rlock/serverless-datadog-core-plugin/compare/0.4.1...0.4.2) (2020-03-27)
 
 ### [0.4.1](https://github.com/w4rlock/serverless-datadog-core-plugin/compare/0.4.0...0.4.1) (2020-03-27)
