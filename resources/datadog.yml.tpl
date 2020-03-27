@@ -4,7 +4,7 @@ functions:
     name: {{functionName}}
     description: 'Datadog Log forward 3.5.0'
     runtime: python3.7
-    handler: datadog_log_forward.datadog_forwarder
+    handler: lambda_function.datadog_forwarder
     package:
       # injected value at runtime
       artifact: ''
