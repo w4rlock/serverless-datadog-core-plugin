@@ -1,6 +1,4 @@
-
 service: 'datadog-forward'
-
 
 provider:
   name: aws
@@ -10,9 +8,6 @@ provider:
     owner: i
     createdby: serverless
 
-
-package:
-  individually: true
 
 plugins:
   modules:
