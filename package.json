@@ -1,6 +1,6 @@
 {
   "name": "serverless-datadog-core-plugin",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Serverless deploy datadog log forwarder lambdas 3.5.0",
   "main": "index.js",
   "scripts": {
@@ -34,7 +34,9 @@
     "serverless-iam-roles-per-function": "^2.0.2"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^8.3.4",
     "babel-eslint": "^10.1.0",
+    "commitlint": "^8.3.5",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.10.1",
