@@ -4,6 +4,10 @@ provider:
   name: aws
   stage: 'develop'
   region: 'us-east-1'
+  deploymentBucket:
+    serverSideEncryption: AES256
+    blockPublicAccess: true
+    name: serverless-datadog-develop
   tags:
     owner: i
     createdby: serverless
@@ -11,14 +15,10 @@ provider:
 plugins:
   modules:
     - ./index.js
+    - serverless-deployment-bucket
 
 custom:
   bucket: my-existent-bucket-logs
-
-  vault:
-    host: vault.corp.cloud
-    key: key-vault
-    path: /v1/secret/${self:custom.vault.key}
 
 
   datadogLogForward:

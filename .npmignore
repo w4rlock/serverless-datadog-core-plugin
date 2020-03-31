@@ -3,6 +3,7 @@
 .prettierrc
 commitlint.config.js
 .env
+.env.example.sh
 
 .lintstagedrc.json
 .editorconfig

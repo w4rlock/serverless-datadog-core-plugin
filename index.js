@@ -23,8 +23,8 @@ class ServerlessDatadogPlugin {
     this.options = options;
     this.pluginPath = __dirname;
 
-    const disabled = this.getConfValue(`${DD_USR_CONF}.disabled`, false);
-    if (disabled) {
+    const disabled = this.getConfValue('varsResolve.disabled', false, false);
+    if ((_.isBoolean(disabled) && disabled) || disabled === 'true') {
       this.log('plugin disabled');
       return;
     }
