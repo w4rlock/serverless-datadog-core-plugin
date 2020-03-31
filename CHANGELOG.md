@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.5](https://github.com/w4rlock/serverless-datadog-core-plugin/compare/0.4.4...0.4.5) (2020-03-31)
+
+
+### Bug Fixes
+
+* serverless boolean with quotes support ([b80ca15](https://github.com/w4rlock/serverless-datadog-core-plugin/commit/b80ca15393f9cef02a4a95730f1151b97f27fa28))
+
 ### [0.4.4](https://github.com/w4rlock/serverless-datadog-core-plugin/compare/0.4.3...0.4.4) (2020-03-31)
 
 
