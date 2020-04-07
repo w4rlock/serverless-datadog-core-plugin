@@ -87,7 +87,6 @@ class ServerlessDatadogPlugin extends BaseServerlessPlugin {
    */
   updatePackageArtifact(fn) {
     const datadogLambdaZip = path.join(this.pluginPath, DD_ZIP_PATH);
-    // safe path setter
     _.set(fn, 'package.artifact', datadogLambdaZip);
   }
 
