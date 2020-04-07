@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/w4rlock/serverless-datadog-core-plugin/compare/0.4.5...0.5.0) (2020-04-07)
+
+
+### Features
+
+* add base class and refactor ([f6207e1](https://github.com/w4rlock/serverless-datadog-core-plugin/commit/f6207e1ba572242f125093c3c91a4e35bc7caafc))
+
 ### [0.4.5](https://github.com/w4rlock/serverless-datadog-core-plugin/compare/0.4.4...0.4.5) (2020-03-31)
 
 
