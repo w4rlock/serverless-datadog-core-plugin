@@ -1,6 +1,6 @@
 {
   "name": "serverless-datadog-logfwd-plugin",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Serverless deploy datadog log forwarder lambdas 3.5.0",
   "main": "index.js",
   "scripts": {
