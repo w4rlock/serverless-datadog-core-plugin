@@ -1,6 +1,6 @@
 const _ = require('lodash');
-const R = require('ramda');
 const path = require('path');
+const BaseServerlessPlugin = require('base-serverless-plugin');
 const slsIamFnRolePlugin = require('serverless-iam-roles-per-function');
 const utils = require('./lib/utils.js');
 
@@ -11,7 +11,7 @@ const DD_FN_YML_PATH = 'resources/datadog.yml.tpl';
 const DD_USR_CONF = 'datadogLogForward';
 const DD_ZIP_PATH = 'resources/aws-dd-forwarder-3.5.0.zip';
 
-class ServerlessDatadogPlugin {
+class ServerlessDatadogPlugin extends BaseServerlessPlugin {
   /**
    * Default serverless constructor
    *
@@ -19,12 +19,10 @@ class ServerlessDatadogPlugin {
    * @param {object} options command line arguments
    */
   constructor(serverless, options) {
-    this.serverless = serverless;
-    this.options = options;
+    super(serverless, options, LOG_PREFFIX, DD_USR_CONF);
     this.pluginPath = __dirname;
 
-    const disabled = this.getConfValue(`${DD_USR_CONF}.disabled`, false, false);
-    if ((_.isBoolean(disabled) && disabled) || disabled === 'true') {
+    if (this.isPluginDisabled()) {
       this.log('plugin disabled');
       return;
     }
@@ -42,61 +40,10 @@ class ServerlessDatadogPlugin {
    */
   loadUserConfig() {
     this.cfg = {};
-    this.cfg.apiKey = this.getConfValue(`${DD_USR_CONF}.apiKey`);
-    this.cfg.bucket = this.getConfValue(`${DD_USR_CONF}.bucket`);
-    this.cfg.functionName = this.getConfValue(`${DD_USR_CONF}.functionName`);
-    this.cfg.extendsFn = this.getConfValue(
-      `${DD_USR_CONF}.extendsFn`,
-      false,
-      {}
-    );
-  }
-
-  /**
-   * Log to stdout
-   *
-   * @param {object|string} entity to log
-   */
-  log(entity) {
-    const str = R.when(R.is(Object), JSON.stringify, entity);
-    this.serverless.cli.log(`${LOG_PREFFIX} ${str}`);
-  }
-
-  /**
-   * Get multiprovider configuration
-   *
-   * @param {string} key configuration key
-   * @param {boolean} required=true if value is null throw a error
-   * @param {string|object} defaultValue=undefined defaultValue value to return
-   * @returns {string} configuration value
-   */
-  getConfValue(key, required = true, defaultValue = undefined) {
-    const fromEnv = (k) => process.env[k];
-    const fromCmdArg = (k) => this.options[k];
-    const fromYaml = (k) => _.get(this.serverless, `service.custom.${k}`);
-    /* eslint no-underscore-dangle: ["error", { "allow": ["__"] }] */
-    const replaceDot = R.replace(/\./g, R.__);
-
-    let k = replaceDot('-')(key);
-    let val = fromCmdArg(k);
-    if (val) return val;
-
-    k = replaceDot('_')(key);
-    val = fromEnv(k.toUpperCase());
-    if (val) return val;
-
-    k = key;
-    val = fromYaml(k);
-    if (val) return val;
-
-    if (required && !defaultValue) {
-      throw new Error(
-        `property value for "${key}" is missing.
-       check in serverless.yml\n\t custom:\n\t   ${k}`
-      );
-    }
-
-    return defaultValue;
+    this.cfg.apiKey = this.getConf(`${DD_USR_CONF}.apiKey`);
+    this.cfg.bucket = this.getConf(`${DD_USR_CONF}.bucket`);
+    this.cfg.functionName = this.getConf(`${DD_USR_CONF}.functionName`);
+    this.cfg.extendsFn = this.getConf(`${DD_USR_CONF}.extendsFn`, false, {});
   }
 
   /**
