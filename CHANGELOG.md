@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](https://github.com/w4rlock/serverless-datadog-core-plugin/compare/0.5.0...0.6.0) (2020-04-07)
+
+
+### Features
+
+* add readme badget npm version ([570266e](https://github.com/w4rlock/serverless-datadog-core-plugin/commit/570266ecce701db680334dfa84589e2c8ac8697b))
+
 ## [0.5.0](https://github.com/w4rlock/serverless-datadog-core-plugin/compare/0.4.5...0.5.0) (2020-04-07)
 
 
