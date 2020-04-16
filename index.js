@@ -40,10 +40,10 @@ class ServerlessDatadogPlugin extends BaseServerlessPlugin {
    */
   loadUserConfig() {
     this.cfg = {};
-    this.cfg.apiKey = this.getConf(`${DD_USR_CONF}.apiKey`);
-    this.cfg.bucket = this.getConf(`${DD_USR_CONF}.bucket`);
-    this.cfg.functionName = this.getConf(`${DD_USR_CONF}.functionName`);
-    this.cfg.extendsFn = this.getConf(`${DD_USR_CONF}.extendsFn`, false, {});
+    this.cfg.apiKey = this.getConf('apiKey');
+    this.cfg.bucket = this.getConf('bucket');
+    this.cfg.functionName = this.getConf('functionName');
+    this.cfg.extendsFn = this.getConf('extendsFn', false, {});
   }
 
   /**
@@ -52,6 +52,7 @@ class ServerlessDatadogPlugin extends BaseServerlessPlugin {
    *
    */
   injectResources() {
+    this.loadUserConfig();
     this.prepareFunction();
   }
 
@@ -62,8 +63,6 @@ class ServerlessDatadogPlugin extends BaseServerlessPlugin {
    *
    */
   prepareFunction() {
-    // call there to get resolved serverless variables
-    this.loadUserConfig();
     const datadogResource = this.getTemplateObject(DD_FN_YML_PATH, this.cfg);
     const fnLogForward = _.get(datadogResource, `functions.${DD_FN_ID}`);
 
